@@ -1,0 +1,4 @@
+name: DiscordLink
+version: '${version}'
+main: net.urpagin.discordlink.DiscordLink
+api-version: '1.21'

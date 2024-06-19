@@ -1,0 +1,7 @@
+# To get a bot token go to https://discord.com/developers/applications
+discord_bot_token: "your_discord_bot_token_here"
+
+# Toggle on the 'Developer Mode' under 'App Settings' > 'Advanced' > 'Developer Mode'.
+# Then right-click on the channel and 'Copy Channel ID'
+
+discord_channel_id: -1
