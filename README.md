@@ -21,3 +21,9 @@ DiscordLink is built on top of Spigot and is compatible with PaperMC onwards. Cu
 ## 🛠️ Additional Information
 
 The plugin interacts with Discord through the [JDA](https://github.com/discord-jda/JDA) library.
+
+## 📝 Todo
+
+- [ ] `/playing` slashcommand
+- [ ] Custom Rich Presence
+- [ ] Custom description?
