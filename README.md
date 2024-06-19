@@ -28,3 +28,4 @@ The plugin interacts with Discord through the [JDA](https://github.com/discord-j
 - [ ] Custom Rich Presence
 - [ ] Custom description?
 - [ ] "Cannot reply to a system message" (pinned messages)
+- [ ] Customize prefixes in `config.yml` (e.g.: [";", ":", "."])
