@@ -1,25 +1,23 @@
 # DiscordLink
 
-DiscordLink provides an interface between the Chat of a Minecraft server and a Discord Channel.
+DiscordLink provides an interface between the chat functionality of a Minecraft server and a Discord channel.
 
 Here is a demo:
 
-
-
+[Demo Video](https://github.com/Urpagin/DiscordLink/assets/72459611/ea6bf913-1dd4-4ba0-9f50-2040549207d3)
 
 ## 🏃‍♂️ Getting Started
 
-DiscordLink is a plugin build on top of Spigot, so compatible with PaperMC onwards. It is, for now, only available in 1.21.
+DiscordLink is built on top of Spigot and is compatible with PaperMC onwards. Currently, it is only available for Minecraft version 1.21.
 
+### Installation Steps
 
-1. Download the .jar release file and place it under the `plugins` directory on your server.
-2. Launch the server once to generate the config file under `./plugins/DiscordLink/config.yml`
-3. Stop the server
-4. Populate the `config.yml` with your Discord bot token and a channel ID
-5. Start the server
-6. Have fun!
+1. Download the `.jar` release file and place it in the `plugins` directory on your server.
+2. Launch the server once to generate the config file at `./plugins/DiscordLink/config.yml`.
+3. Populate the `config.yml` with your Discord bot token and a channel ID.
+4. Restart the server.
+5. Enjoy!
 
-## 🛠️ Additional Info
+## 🛠️ Additional Information
 
-The plugin interacts with Discord using [JDA](<https://github.com/discord-jda/JDA>) library.
-
+The plugin interacts with Discord through the [JDA](https://github.com/discord-jda/JDA) library.
