@@ -27,3 +27,4 @@ The plugin interacts with Discord through the [JDA](https://github.com/discord-j
 - [ ] `/playing` slashcommand
 - [ ] Custom Rich Presence
 - [ ] Custom description?
+- [ ] "Cannot reply to a system message" (pinned messages)
