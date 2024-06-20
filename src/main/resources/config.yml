@@ -1,7 +1,16 @@
-# To get a bot token go to https://discord.com/developers/applications
-discord_bot_token: "your_discord_bot_token_here"
+# DiscordLink config.yml
 
-# Toggle on the 'Developer Mode' under 'App Settings' > 'Advanced' > 'Developer Mode'.
-# Then right-click on the channel and 'Copy Channel ID'
+# To get a bot token, go to https://discord.com/developers/applications and create a bot.
+# Copy and paste the token here.
+discord_bot_token: 'your_discord_bot_token_here'
 
+# Enable 'Developer Mode' under 'App Settings' > 'Advanced' > 'Developer Mode' in Discord.
+# Right-click on the channel from which you want to send/receive messages and 'Copy Channel ID'.
+# Ensure that this is the ID of a text channel where the bot has permissions to read and send messages.
 discord_channel_id: -1
+
+# Prefixes needed for Minecraft chat messages to be sent to Discord.
+# Add prefixes that should trigger sending messages. For example, use ";" or ".".
+# To send ALL chat messages to Discord, leave this list empty (i.e., minecraft_chat_prefixes: [])
+# Note: only the first character of the prefix will be used. So for 'prefix' the program will only test the MC chat message against 'p'.
+minecraft_chat_prefixes: [';', ',', ':', '!']

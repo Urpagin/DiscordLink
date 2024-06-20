@@ -1,5 +1,9 @@
 package net.urpagin.discordlink;
 
+import net.urpagin.discordlink.minecraft.listeners.MinecraftChatListener;
+import net.urpagin.discordlink.minecraft.listeners.MinecraftPlayerDeathListener;
+import net.urpagin.discordlink.minecraft.listeners.MinecraftPlayerJoinListener;
+import net.urpagin.discordlink.minecraft.listeners.MinecraftPlayerQuitListener;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -17,11 +21,17 @@ public final class DiscordLink extends JavaPlugin implements Listener {
     @Override
     public void onEnable() {
         long startTime = System.nanoTime();
-        ReadConfig config = new ReadConfig(this);
 
-        // Register event listener
+        // Is this ok to do?
+        new ReadConfig(this); // Initialize the class for static use.
+
+        // Register event listeners
         getServer().getPluginManager().registerEvents(new MinecraftChatListener(), this);
-        discord = new DiscordInterface(config.getBotToken(), config.getDiscordChannelId());
+        getServer().getPluginManager().registerEvents(new MinecraftPlayerJoinListener(), this);
+        getServer().getPluginManager().registerEvents(new MinecraftPlayerQuitListener(), this);
+        getServer().getPluginManager().registerEvents(new MinecraftPlayerDeathListener(), this);
+
+        discord = new DiscordInterface(this, ReadConfig.getBotToken(), ReadConfig.getDiscordChannelId());
 
         long endTime = System.nanoTime();
 

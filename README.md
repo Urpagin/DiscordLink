@@ -24,8 +24,10 @@ The plugin interacts with Discord through the [JDA](https://github.com/discord-j
 
 ## 📝 Todo
 
+- [x] "Cannot reply to a system message" (e.g.: pinned messages)
+- [x] Use discord server nicknames in MC Chat, not handle
+- [x] Custom description?
+- [x] Custom Rich Presence
+- [x] Customize prefixes in `config.yml` (e.g.: [";", ":", "."])
 - [ ] `/playing` slashcommand
-- [ ] Custom Rich Presence
-- [ ] Custom description?
-- [ ] "Cannot reply to a system message" (pinned messages)
-- [ ] Customize prefixes in `config.yml` (e.g.: [";", ":", "."])
+- [ ] `/deaths` slashcommand

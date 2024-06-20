@@ -2,13 +2,17 @@ package net.urpagin.discordlink;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.List;
+
 public class ReadConfig {
     private static final String DEFAULT_TOKEN = "your_discord_bot_token_here";
     private static final long DEFAULT_CHANNEL_ID = -1;
 
     private final JavaPlugin plugin;
-    private String botToken;
-    private long channelId;
+
+    private static String botToken;
+    private static long channelId;
+    private static List<String> minecraftChatPrefixes;
 
     public ReadConfig(JavaPlugin plugin) {
         this.plugin = plugin;
@@ -19,6 +23,7 @@ public class ReadConfig {
     private void loadConfig() {
         botToken = plugin.getConfig().getString("discord_bot_token", DEFAULT_TOKEN);
         channelId = plugin.getConfig().getLong("discord_channel_id", DEFAULT_CHANNEL_ID);
+        minecraftChatPrefixes = plugin.getConfig().getStringList("minecraft_chat_prefixes");
 
         boolean configInvalid = false;
 
@@ -41,11 +46,15 @@ public class ReadConfig {
         plugin.getServer().getPluginManager().disablePlugin(plugin);
     }
 
-    public String getBotToken() {
+    public static String getBotToken() {
         return botToken;
     }
 
-    public long getDiscordChannelId() {
+    public static long getDiscordChannelId() {
         return channelId;
+    }
+
+    public static List<String> getMinecraftChatPrefixes() {
+        return minecraftChatPrefixes;
     }
 }

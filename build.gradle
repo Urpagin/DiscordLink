@@ -4,12 +4,15 @@ plugins {
     id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
-// Do not remove, otherwise shadow will break.
-mainClassName = "net.urpagin.discordlink.DiscordLink"
 group = 'net.urpagin'
 version = '1.0.0'
 
 var jdaVersion = "5.0.0-beta.24"
+
+// Do not remove, otherwise shadow will break.
+application {
+    mainClass = 'net.urpagin.discordlink.DiscordLink'
+}
 
 repositories {
     mavenCentral()
@@ -21,11 +24,16 @@ repositories {
         name = "sonatype"
         url = "https://oss.sonatype.org/content/groups/public/"
     }
+
+    // Enable for ProtocolLib
+    //maven { url "https://repo.dmulloy2.net/repository/public/" }
+
 }
 
 dependencies {
     compileOnly 'org.spigotmc:spigot-api:1.21-R0.1-SNAPSHOT'
     implementation "net.dv8tion:JDA:$jdaVersion"
+    //compileOnly 'com.comphenix.protocol:ProtocolLib:5.1.0'
 }
 
 def targetJavaVersion = 21
