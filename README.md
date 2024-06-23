@@ -30,5 +30,5 @@ The plugin interacts with Discord through the [JDA](https://github.com/discord-j
 - [x] Custom Rich Presence
 - [x] Customize prefixes in `config.yml` (e.g.: [";", ":", "."])
 - [x] Death logging in the Discord channel
-- [ ] `/playing` slashcommand
-- [ ] `/deaths` slashcommand
+- [x] `/playing` slashcommand
+- [x] `/deaths` slashcommand
