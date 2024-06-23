@@ -1,9 +1,6 @@
 package net.urpagin.discordlink;
 
-import net.urpagin.discordlink.minecraft.listeners.MinecraftChatListener;
-import net.urpagin.discordlink.minecraft.listeners.MinecraftPlayerDeathListener;
-import net.urpagin.discordlink.minecraft.listeners.MinecraftPlayerJoinListener;
-import net.urpagin.discordlink.minecraft.listeners.MinecraftPlayerQuitListener;
+import net.urpagin.discordlink.minecraft.listeners.*;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -30,6 +27,7 @@ public final class DiscordLink extends JavaPlugin implements Listener {
         getServer().getPluginManager().registerEvents(new MinecraftPlayerJoinListener(), this);
         getServer().getPluginManager().registerEvents(new MinecraftPlayerQuitListener(), this);
         getServer().getPluginManager().registerEvents(new MinecraftPlayerDeathListener(), this);
+        getServer().getPluginManager().registerEvents(new MinecraftPlayerConnectionTracker(), this);
 
         discord = new DiscordInterface(this, ReadConfig.getBotToken(), ReadConfig.getDiscordChannelId());
 

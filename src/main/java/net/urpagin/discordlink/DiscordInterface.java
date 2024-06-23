@@ -5,7 +5,9 @@ import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import net.dv8tion.jda.api.interactions.commands.build.Commands;
 import net.dv8tion.jda.api.requests.GatewayIntent;
+import net.urpagin.discordlink.discord.listeners.DiscordCommandListener;
 import net.urpagin.discordlink.discord.listeners.DiscordMessageListener;
 import org.bukkit.Bukkit;
 import org.bukkit.Server;
@@ -23,7 +25,7 @@ public class DiscordInterface extends ListenerAdapter {
     private static JavaPlugin plugin;
 
     // Max amount of characters the bot can send.
-    private static final int DISCORD_MAX_MESSAGE_LENGTH = 2000;
+    public static final int DISCORD_MAX_MESSAGE_LENGTH = 2000;
 
 
     DiscordInterface(JavaPlugin plugin, String token, long channelId) {
@@ -36,7 +38,14 @@ public class DiscordInterface extends ListenerAdapter {
     public void initializeBot() {
         try {
             api = JDABuilder.createDefault(token).enableIntents(GatewayIntent.GUILD_MESSAGES, GatewayIntent.MESSAGE_CONTENT, GatewayIntent.GUILD_MEMBERS).build().awaitReady();
+
+            // Add event listeners!
             api.addEventListener(new DiscordMessageListener(channelId), this);
+            api.addEventListener(new DiscordCommandListener(), this);
+
+            // Add slash commands!
+            api.updateCommands().addCommands(Commands.slash("playing", "Display connected players!"), Commands.slash("deaths", "Display the deaths leaderboard!"), Commands.slash("become_a_god", "Would you hold any regrets in becoming divine?")).queue();
+
             updateActivityPlaying();
         } catch (InterruptedException e) {
             Bukkit.getLogger().severe("Failed to initialize Discord bot: " + Arrays.toString(e.getStackTrace()));
