@@ -9,6 +9,7 @@ import net.dv8tion.jda.api.interactions.commands.build.Commands;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.urpagin.discordlink.discord.listeners.DiscordCommandListener;
 import net.urpagin.discordlink.discord.listeners.DiscordMessageListener;
+import net.urpagin.discordlink.minecraft.listeners.TimeWatcher;
 import org.bukkit.Bukkit;
 import org.bukkit.Server;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -55,16 +56,25 @@ public class DiscordInterface extends ListenerAdapter {
     }
 
     public static void updateActivityPlaying() {
-        Server server = Bukkit.getServer(); // Get server instance
         Bukkit.getScheduler().runTaskLaterAsynchronously(plugin, () -> {
-            int onlinePlayers = server.getOnlinePlayers().size();
-            int maxPlayers = server.getMaxPlayers();
-            String plural = (onlinePlayers > 1) ? "players" : "player";
-            String activityMessage = String.format("\uD83C\uDF1F %d/%d %s online!", onlinePlayers, maxPlayers, plural);
+            String activityMessage = getActivityMessage();
             api.getPresence().setActivity(Activity.customStatus(activityMessage));
         }, 20L); // Delay the task by 20 ticks (1 second)
         // When a player quits it's not registered when no waiting is done.
     }
+
+    private static String getActivityMessage() {
+        Server server = Bukkit.getServer(); // Get server instance
+
+        int onlinePlayers = server.getOnlinePlayers().size();
+        int maxPlayers = server.getMaxPlayers();
+        boolean isDay = TimeWatcher.isDay();
+
+        String timeEmoji = (isDay) ? "☀\uFE0F" : "\uD83C\uDF19"; // Either sun or crescent moon emoji.
+        String playerPlural = (onlinePlayers > 1) ? "players" : "player";
+        return String.format("%s %d/%d %s online!", timeEmoji, onlinePlayers, maxPlayers, playerPlural);
+    }
+
 
     public boolean sendMessageToChannel(String content) {
         if (content.length() > DISCORD_MAX_MESSAGE_LENGTH) return false;

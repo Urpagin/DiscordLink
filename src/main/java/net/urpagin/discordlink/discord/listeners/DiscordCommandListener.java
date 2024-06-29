@@ -113,27 +113,30 @@ public class DiscordCommandListener extends ListenerAdapter {
         Map<String, UUID> allPlayerNames = new HashMap<>();
 
         // Add offline players name & UUID to the set!
-        for (OfflinePlayer p : Bukkit.getServer().getOfflinePlayers())
+        for (OfflinePlayer p : Bukkit.getServer().getOfflinePlayers()) {
+            if (!p.hasPlayedBefore() || p.getName() == null)
+                continue;
             allPlayerNames.put(p.getName(), p.getUniqueId());
+        }
         // Add online players name & UUID to the set!
-        for (Player p : Bukkit.getServer().getOnlinePlayers())
+        for (Player p : Bukkit.getServer().getOnlinePlayers()) {
             allPlayerNames.put(p.getName(), p.getUniqueId());
+        }
 
         if (allPlayerNames.isEmpty()) {
             return String.format("%s No one died! Yet... %s", SMILE_EMOJI, WICKED_IMP_EMOJI);
         }
 
         // Map of username to death count
-        Map<String, Integer> playersDeathCount = new HashMap<>();
+        Map<UUID, Integer> playersDeathCount = new HashMap<>();
         for (Map.Entry<String, UUID> entry : allPlayerNames.entrySet()) {
-            String playerName = entry.getKey();
             UUID playerId = entry.getValue();
             OfflinePlayer p = Bukkit.getOfflinePlayer(playerId);
-            playersDeathCount.put(playerName, p.getStatistic(Statistic.DEATHS));
+            playersDeathCount.put(playerId, p.getStatistic(Statistic.DEATHS));
         }
 
         // Sorting death count by descending order
-        Map<String, Integer> sortedByDeathCount = playersDeathCount.entrySet().stream()
+        Map<UUID, Integer> sortedByDeathCount = playersDeathCount.entrySet().stream()
                 .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
                 .collect(Collectors.toMap(
                         Map.Entry::getKey,
@@ -141,19 +144,36 @@ public class DiscordCommandListener extends ListenerAdapter {
                         (oldValue, newValue) -> oldValue,
                         LinkedHashMap::new));
 
+
         StringBuilder response = new StringBuilder();
         response.append(String.format("## %s Deaths Leaderboard %s\n", SKULL_EMOJI, SKULL_EMOJI));
         String firstPlaceEmoji = String.format(" %s%s%s", CROSSBONES_EMOJI, CROSSBONES_EMOJI, CROSSBONES_EMOJI);
-        for (Map.Entry<String, Integer> entry : sortedByDeathCount.entrySet()) {
-            String playerName = entry.getKey();
+        for (Map.Entry<UUID, Integer> entry : sortedByDeathCount.entrySet()) {
+            OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(entry.getKey());
+            String playerName = offlinePlayer.getName();
             int deathCount = entry.getValue();
             String plural = (deathCount > 1) ? "times" : "time";
-            response.append("- ").append(playerName).append(" died **").append(deathCount).append("** ").append(plural).append(firstPlaceEmoji).append("\n");
+            String totalHoursPlayed = getHoursFromTicks(offlinePlayer.getStatistic(Statistic.PLAY_ONE_MINUTE)) + "h";
+            response.append("- ")
+                    .append(playerName)
+                    .append(" died **")
+                    .append(deathCount)
+                    .append("** ")
+                    .append(plural)
+                    .append(firstPlaceEmoji)
+                    .append(" (")
+                    .append(totalHoursPlayed)
+                    .append(")\n");
             firstPlaceEmoji = "";
         }
 
         return response.toString();
     }
+
+    private long getHoursFromTicks(int ticks) {
+        return ticks / 20 / 60 / 60; // Because 20 ticks is 1 second.
+    }
+
 
     private void handleBecomeAGod(SlashCommandInteractionEvent event) {
         String response = String.format("%s%s%s%s blud be trippin frfr %s%s%s", MAN_SPEAKING_EMOJI, MAN_SPEAKING_EMOJI, FIRE_EMOJI, FIRE_EMOJI, SKULL_EMOJI, SKULL_EMOJI, SKULL_EMOJI);

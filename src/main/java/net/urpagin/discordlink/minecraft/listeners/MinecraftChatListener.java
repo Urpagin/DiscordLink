@@ -60,7 +60,7 @@ public class MinecraftChatListener implements Listener {
         // ---- now process chat message ----
 
         String playerHealthString = getPlayerHealthString(event.getPlayer());
-        String discordMessage = "";
+        String discordMessage;
 
         if (playerHealthString.isEmpty()) {
             discordMessage = String.format("**<%s>** %s", playerName, message);

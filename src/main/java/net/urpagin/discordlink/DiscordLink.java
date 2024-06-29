@@ -28,6 +28,7 @@ public final class DiscordLink extends JavaPlugin implements Listener {
         getServer().getPluginManager().registerEvents(new MinecraftPlayerQuitListener(), this);
         getServer().getPluginManager().registerEvents(new MinecraftPlayerDeathListener(), this);
         getServer().getPluginManager().registerEvents(new MinecraftPlayerConnectionTracker(), this);
+        new TimeWatcher(this.getServer().getWorlds().getFirst()).runTaskTimer(this, 0L, 80L); // Every 4 seconds
 
         discord = new DiscordInterface(this, ReadConfig.getBotToken(), ReadConfig.getDiscordChannelId());
 
