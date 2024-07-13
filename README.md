@@ -33,7 +33,6 @@ The plugin interacts with Discord through the [JDA](https://github.com/discord-j
 - [x] `/playing` slashcommand
 - [x] `/deaths` slashcommand
 - [ ] Sanitize formatting codes on Discord-sent messages
-- [ ] `Restart` slashcommand & MC Command
 - [ ] `Stop` slashcommand & MC Command
 - [ ] `/Playtime` slashcommand
 - [ ] Version check at start: checks this repo for newer releases
