@@ -6,6 +6,7 @@ Here is a demo:
 
 [Demo Video](https://github.com/Urpagin/DiscordLink/assets/72459611/ea6bf913-1dd4-4ba0-9f50-2040549207d3)
 
+
 ## 🏃‍♂️ Getting Started
 
 DiscordLink is built on top of Spigot and is compatible with PaperMC onwards. **Currently, it is only available for Minecraft version 1.21**.
@@ -21,9 +22,16 @@ DiscordLink is built on top of Spigot and is compatible with PaperMC onwards. **
 > [!TIP]
 > In the `plugins/DiscordLink/config.yml` file, set `minecraft_chat_prefixes` to `[]` in order for all Minecraft chat messages to be sent to the Discord channel.
 
+
+## 🚨 Known Issues
+
+- Executing the `reload` command on the Minecraft server leads to unexpected behavior (messages sent multiple times).
+
+
 ## 🛠️ Additional Information
 
 The plugin interacts with Discord through the [JDA](https://github.com/discord-jda/JDA) library.
+
 
 ## 📝 Todo
 
