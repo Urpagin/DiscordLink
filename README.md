@@ -13,10 +13,13 @@ DiscordLink is built on top of Spigot and is compatible with PaperMC onwards. **
 ### Installation Steps
 
 1. Download the `.jar` release file and place it in the `plugins` directory on your server.
-2. Launch the server once to generate the config file at `./plugins/DiscordLink/config.yml`.
+2. Launch the server once to generate the config file at `plugins/DiscordLink/config.yml`.
 3. Populate the `config.yml` with your Discord bot token and a channel ID.
 4. Restart the server.
 5. Enjoy!
+
+> [!TIP]
+> In the `plugins/DiscordLink/config.yml` file, set `minecraft_chat_prefixes` to `[]` in order for all Minecraft chat messages to be sent to the Discord channel.
 
 ## 🛠️ Additional Information
 
@@ -33,6 +36,6 @@ The plugin interacts with Discord through the [JDA](https://github.com/discord-j
 - [x] `/playing` slashcommand
 - [x] `/deaths` slashcommand
 - [ ] Sanitize formatting codes on Discord-sent messages
-- [ ] `Stop` slashcommand & MC Command
-- [ ] `/playtime` slashcommand
-- [ ] Version check at start: checks this repo for newer releases
+- [ ] `/stop` slashcommand & MC Command: stops the Minecraft server
+- [ ] `/playtime` slashcommand: shows players playtime in a descending order
+- [ ] Plugin version check at server start: checks this repo for newer releases
