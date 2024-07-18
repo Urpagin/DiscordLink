@@ -8,7 +8,7 @@ Here is a demo:
 
 ## 🏃‍♂️ Getting Started
 
-DiscordLink is built on top of Spigot and is compatible with PaperMC onwards. Currently, it is only available for Minecraft version 1.21.
+DiscordLink is built on top of Spigot and is compatible with PaperMC onwards. **Currently, it is only available for Minecraft version 1.21**.
 
 ### Installation Steps
 
@@ -34,5 +34,5 @@ The plugin interacts with Discord through the [JDA](https://github.com/discord-j
 - [x] `/deaths` slashcommand
 - [ ] Sanitize formatting codes on Discord-sent messages
 - [ ] `Stop` slashcommand & MC Command
-- [ ] `/Playtime` slashcommand
+- [ ] `/playtime` slashcommand
 - [ ] Version check at start: checks this repo for newer releases
