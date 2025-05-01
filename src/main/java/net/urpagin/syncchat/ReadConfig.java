@@ -10,6 +10,7 @@ import java.util.List;
 public class ReadConfig {
     private static final String DEFAULT_TOKEN = "your_discord_bot_token_here";
     private static final long DEFAULT_CHANNEL_ID = -1;
+    private static final String DEFAULT_CONFIG_PATH = "plugins/SyncChat/config.yml";
 
     private static final String DEFAULT_DISCORD_PLAYING_SLASH_COMMAND_HEADER_FORMATTING = "## :woman_wearing_turban_tone5: Online Player List :person_wearing_turban_tone3:";
     private static final String DEFAULT_DISCORD_PLAYING_SLASH_COMMAND_LINE_FORMATTING = "- **{name}** (connected for {connectedElapsedTime})";
@@ -107,11 +108,16 @@ public class ReadConfig {
 
 
         if (DEFAULT_TOKEN.equals(botToken)) {
-            throw new InvalidConfigException("Please set 'discord_bot_token' in the plugin's 'config.yml'");
+            throw new InvalidConfigException(
+                    "Please set the 'discord_bot_token' variable in the config at " + DEFAULT_CONFIG_PATH
+                    + "\nTo know how to get a Discord bot token please read the 'Getting Started' section here: https://www.spigotmc.org/resources/syncchat-discord-link.121376/"
+            );
         }
 
         if (channelId == DEFAULT_CHANNEL_ID) {
-            throw new InvalidConfigException("Please set 'discord_channel_id' in the plugin's 'config.yml'");
+            throw new InvalidConfigException(
+                    "Please set the 'discord_channel_id' variable in the config at " + DEFAULT_CONFIG_PATH
+            );
         }
     }
 
